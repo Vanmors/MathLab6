@@ -20,8 +20,15 @@
 <form action="#" th:action="@{/resultPage}" th:object="${form}" th:method="GET">
     <div>
         Выбор метода решения:
-        <label>Эйлера</label>
+
         <input type="radio" th:field="*{method}" value="1"/>
+        <label>Эйлера</label>
+
+        <input type="radio" th:field="*{method}" value="2"/>
+        <label>Рунге</label>
+
+        <input type="radio" th:field="*{method}" value="3"/>
+        <label>Милана</label>
     </div>
     <p></p>
     Выбор функции:
@@ -42,10 +49,10 @@
     </div>
     <p></p>
     Введите значения a:
-        <input type="number" th:field="*{a}" step="any"/>
+    <input type="number" th:field="*{a}" step="any"/>
     <p/>
     Введите значения b:
-        <input type="number" th:field="*{b}" step="any"/>
+    <input type="number" th:field="*{b}" step="any"/>
     <p/>
 
 
