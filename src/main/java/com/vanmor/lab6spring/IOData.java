@@ -34,12 +34,12 @@ public class IOData {
             model.addAttribute("result", result);
         } else if (form.getMethod() == 2) {
             double[][] result = rungeMethod.method(form.getA(), form.getB(), form.getY0(), form.getH(),
-                    form.getNumberOfFunction());
+                    form.getNumberOfFunction(), form.getE());
             model.addAttribute("result", result);
             UploadChart.result = result;
         } else if (form.getMethod() == 3) {
             double[][] result = milanaMethod.method(form.getA(), form.getB(), form.getY0(), form.getH(),
-                    form.getNumberOfFunction());
+                    form.getNumberOfFunction(), form.getE());
             UploadChart.result = result;
             model.addAttribute("result", result);
         }

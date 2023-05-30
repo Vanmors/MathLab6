@@ -4,11 +4,19 @@ import com.vanmor.lab6spring.Function;
 
 public class MilanaMethod {
 
+    Function function = new Function();
 
-    public double[][] method(double a, double b, double y0, double h, int functionNumber) {
+    public double[][] method(double a, double b, double y0, double h, int functionNumber, double e) {
+        if (a == b) {
+            return null;
+        }
         int p = 4;
         int n = (int) (Math.abs(b - a) / h) + 1;
-        Function function = new Function();
+        if (h >= Math.abs(a-b)) {
+            return null;
+        }
+
+
         double[][] result = new double[n][4];
         result[0][0] = a;
         result[0][1] = y0;
@@ -28,11 +36,14 @@ public class MilanaMethod {
             result[i][3] = function.f1(result[i][0], result[i][1], functionNumber);
         }
 
-        double yp;
+        double yp = 0;
         double yk;
 
         for (int i = 4; i < result.length; i++) {
             result[i][0] = result[i - 1][0] + h;
+            result[i][3] = function.f1(result[i][0], result[i][1], functionNumber);
+
+
             yp = result[i - 4][1] + 4 * h / 3 * (2 * function.f(result[i - 3][0], result[i - 3][1], functionNumber) -
                     function.f(result[i - 2][0], result[i - 2][1], functionNumber) + 2 *
                     function.f(result[i - 1][0], result[i - 1][1], functionNumber));
@@ -41,9 +52,14 @@ public class MilanaMethod {
                     4 * function.f(result[i - 1][0], result[i - 1][1], functionNumber) +
                     function.f(result[i][0], yp, functionNumber));
 
+
+            if (e == 0) {
+                return null;
+            }
+
             result[i][1] = yk;
             result[i][2] = function.f(result[i][0], yp, functionNumber);
-            result[i][3] = function.f1(result[i][0], result[i][1], functionNumber);
+
         }
 
         return result;

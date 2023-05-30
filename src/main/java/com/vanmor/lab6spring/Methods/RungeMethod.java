@@ -5,9 +5,15 @@ import com.vanmor.lab6spring.Function;
 public class RungeMethod {
 
 
-    public double[][] method(double a, double b, double y0, double h, int functionNumber) {
+    public double[][] method(double a, double b, double y0, double h, int functionNumber, double e) {
+        if (a==b){
+            return null;
+        }
         int p = 4;
         int n = (int) (Math.abs(b - a) / h) + 1;
+        if (h >= Math.abs(a-b)) {
+            return null;
+        }
         Function function = new Function();
         double[][] result = new double[n][4];
         result[0][0] = a;
@@ -28,6 +34,8 @@ public class RungeMethod {
             result[i][2] = function.f(result[i][0], result[i][1], functionNumber);
             result[i][3] = function.f1(result[i][0], result[i][1], functionNumber);
         }
+
+
 
         return result;
 
