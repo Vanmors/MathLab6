@@ -6,6 +6,7 @@ public class RungeMethod {
 
 
     public double[][] method(double a, double b, double y0, double h, int functionNumber) {
+        int p = 4;
         int n = (int) (Math.abs(b - a) / h) + 1;
         Function function = new Function();
         double[][] result = new double[n][4];

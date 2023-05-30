@@ -23,14 +23,14 @@ public class Function {
         switch (functionNumber) {
             case (1) -> {
 //                return y * y * (Math.pow(x, 2) / 2 + x) + y * x;
-//                return 1 / x;
-                return -1 * (1 / x);
+//                return -1 * (1 / x);
+                return -1 * Math.pow(Math.E, x) / (Math.pow(Math.E, x) * x);
 
             }
             case (2) -> {
 //                return Math.pow(x, 2) / 2 + Math.cos(y / Math.sqrt(5)) * x;
 //                return Math.sqrt(5) * Math.acos(Math.pow(x, 2) / 2);
-                return Math.pow(Math.log(x), 2) + 0  * Math.log(x) - 1;
+                return Math.pow(Math.log(x), 2) + 0 * Math.log(x) - 1;
             }
             default -> {
 //                return 2 * Math.pow(x, 3) + (5 * y * Math.pow(x, 2) / 2);
@@ -38,6 +38,24 @@ public class Function {
                 return (-4 * Math.pow(x, 3)) / (5 * Math.pow(x, 2));
             }
         }
+    }
+
+
+    public boolean compareColumn(double[][] array1, double[][] array2, double e, int p) {
+        if (array1 == null || array2 == null) {
+            return false;
+        }
+
+            for (int i = 0; i < array2.length; i++) {
+            if (array1.length - 1 < i) {
+                break;
+            }
+            if ((array1[i][1] - array2[i][1]) / (Math.pow(2, p) - 1) > e) {
+                return false; // Значения в указанном столбце не совпадают
+            }
+        }
+
+        return true; // Значения в указанном столбце совпадают в обоих массивах
     }
 
 }

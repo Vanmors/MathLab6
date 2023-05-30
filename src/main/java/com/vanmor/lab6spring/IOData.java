@@ -25,23 +25,29 @@ public class IOData {
         RungeMethod rungeMethod = new RungeMethod();
         MilanaMethod milanaMethod = new MilanaMethod();
         int n = (int) (Math.abs(form.getB() - form.getA()) / form.getH()) + 1;
-        double[][] result = new double[n][4];
+//        double[][] result = new double[n][4];
 
         if (form.getMethod() == 1) {
-            result = eulerMethod.method(form.getA(), form.getB(), form.getY0(), form.getH(),
-                    form.getNumberOfFunction());
+            double[][] result = eulerMethod.method(form.getA(), form.getB(), form.getY0(), form.getH(),
+                    form.getNumberOfFunction(), form.getH());
+            UploadChart.result = result;
+            model.addAttribute("result", result);
         } else if (form.getMethod() == 2) {
-            result = rungeMethod.method(form.getA(), form.getB(), form.getY0(), form.getH(),
+            double[][] result = rungeMethod.method(form.getA(), form.getB(), form.getY0(), form.getH(),
                     form.getNumberOfFunction());
+            model.addAttribute("result", result);
+            UploadChart.result = result;
         } else if (form.getMethod() == 3) {
-            result = milanaMethod.method(form.getA(), form.getB(), form.getY0(), form.getH(),
+            double[][] result = milanaMethod.method(form.getA(), form.getB(), form.getY0(), form.getH(),
                     form.getNumberOfFunction());
+            UploadChart.result = result;
+            model.addAttribute("result", result);
         }
 
-        UploadChart.result = result;
+
         UploadChart.numberOfFunction = form.getNumberOfFunction();
 
-        model.addAttribute("result", result);
+
         return "result";
     }
 }

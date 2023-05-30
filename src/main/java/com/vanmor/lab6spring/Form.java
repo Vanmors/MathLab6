@@ -12,5 +12,6 @@ public class Form {
     private double b;
     private double h;
     private double y0;
+    private double e;
 
 }

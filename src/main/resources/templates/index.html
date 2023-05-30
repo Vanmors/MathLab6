@@ -19,6 +19,11 @@
 <body>
 <form action="#" th:action="@{/resultPage}" th:object="${form}" th:method="GET">
     <div>
+        <label>e:</label>
+        <input type="number" th:field="*{e}" value="1", step="any"/>
+
+    </div>
+    <div>
         Выбор метода решения:
 
         <input type="radio" th:field="*{method}" value="1"/>
